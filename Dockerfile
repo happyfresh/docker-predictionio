@@ -5,10 +5,10 @@ ENV PIO_VERSION="0.10.0" \
     SPARK_VERSION="1.6.3" \
     JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
-ENV PIO_HOME /pio/PredictionIO-${PIO_VERSION}-incubating
+ENV PIO_HOME /PredictionIO-${PIO_VERSION}-incubating
 ENV PATH=${PIO_HOME}/bin:$PATH
 
-RUN mkdir -p ${PIO_HOME}/vendors \
+RUN mkdir -p /${PIO_HOME}/vendors \
     && apt-get update \
     && apt-get install -y --auto-remove --no-install-recommends curl openjdk-8-jdk unzip \
     && apt-get clean \
