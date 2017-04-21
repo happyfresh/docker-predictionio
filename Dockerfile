@@ -5,7 +5,7 @@ ENV PIO_VERSION="0.10.0" \
     SPARK_VERSION="1.6.3" \
     JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
-ENV PIO_HOME /PredictionIO-${PIO_VERSION}-incubating
+ENV PIO_HOME /root/PredictionIO-${PIO_VERSION}-incubating
 ENV PATH=${PIO_HOME}/bin:$PATH
 
 RUN mkdir -p /${PIO_HOME}/vendors \
@@ -20,10 +20,11 @@ RUN curl -O http://apache.repo.unpas.ac.id/incubator/predictionio/${PIO_VERSION}
     && cd apache-predictionio-${PIO_VERSION}-incubating \
     && ./make-distribution.sh
 
-RUN tar zxvf /apache-predictionio-${PIO_VERSION}-incubating/PredictionIO-${PIO_VERSION}-incubating.tar.gz -C /
+RUN tar zxvf /apache-predictionio-${PIO_VERSION}-incubating/PredictionIO-${PIO_VERSION}-incubating.tar.gz -C /root/
 RUN rm -r /apache-predictionio-${PIO_VERSION}-incubating
 
-COPY files/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
+COPY conf/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
+COPY engines/ /root/
 
 RUN curl -O http://d3kbcqa49mib13.cloudfront.net/spark-${SPARK_VERSION}-bin-hadoop2.6.tgz \
     && tar -xvzf spark-${SPARK_VERSION}-bin-hadoop2.6.tgz -C ${PIO_HOME}/vendors \
