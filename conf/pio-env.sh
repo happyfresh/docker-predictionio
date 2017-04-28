@@ -10,7 +10,7 @@
 # you need to change these to fit your site.
 
 # SPARK_HOME: Apache Spark is a hard dependency and must be configured.
-SPARK_HOME=$PIO_HOME/vendors/spark-1.6.3-bin-hadoop2.6
+SPARK_HOME=$PIO_HOME/vendors/spark-2.1.0-bin-hadoop2.7
 
 POSTGRES_JDBC_DRIVER=$PIO_HOME/lib/postgresql-42.0.0.jar
 
