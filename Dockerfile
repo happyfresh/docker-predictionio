@@ -12,11 +12,10 @@ ENV PATH=${PIO_HOME}/bin:$PATH
 
 WORKDIR $BUILD_SRC
 
-COPY engines/ /root/
+COPY engines/ /root/engines
 COPY files/ /root/files/
 
 RUN mkdir -p ${PIO_HOME}/vendors \
-    && mkdir -p /root/files \
     \
     && curl -OL https://github.com/kahirul/PredictionIO-Bin/raw/master/PredictionIO-${PIO_VERSION}.tar.gz \
     && tar xzvf PredictionIO-${PIO_VERSION}.tar.gz -C /root/ \
