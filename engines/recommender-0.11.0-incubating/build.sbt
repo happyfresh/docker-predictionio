@@ -1,10 +1,4 @@
-import AssemblyKeys._
-
-assemblySettings
-
 name := "template-scala-parallel-recommendation"
-
-organization := "org.apache.predictionio"
 
 scalaVersion := "2.11.8"
 
