@@ -1,4 +1,4 @@
-FROM kahirul/predictionio-dep
+FROM kahirul/predictionio-base
 
 MAINTAINER Khairul
 
