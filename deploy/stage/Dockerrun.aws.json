@@ -1,0 +1,21 @@
+{
+  "AWSEBDockerrunVersion": "2",
+    "containerDefinitions": [
+    {
+      "name": "predictionio",
+      "image": "kahirul/predictionio:latest",
+      "essential": true,
+      "memory": 3072,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 7070
+        },
+        {
+          "hostPort": 8000,
+          "containerPort": 8000
+        }
+      ]
+    }
+  ]
+}
