@@ -25,15 +25,15 @@ class ALSModel(
   def save(id: String, params: ALSAlgorithmParams,
     sc: SparkContext): Boolean = {
 
-    val pathPrefix = s"{modelPath()}/{id}"
+    val pathPrefix = s"${ALSModel.modelPath()}/${id}"
 
-    sc.parallelize(Seq(rank)).saveAsObjectFile(s"{pathPrefix}/rank")
-    userFeatures.saveAsObjectFile(s"{pathPrefix}/userFeatures")
-    productFeatures.saveAsObjectFile(s"{pathPrefix}/productFeatures")
+    sc.parallelize(Seq(rank)).saveAsObjectFile(s"${pathPrefix}/rank")
+    userFeatures.saveAsObjectFile(s"${pathPrefix}/userFeatures")
+    productFeatures.saveAsObjectFile(s"${pathPrefix}/productFeatures")
     sc.parallelize(Seq(userStringIntMap))
-      .saveAsObjectFile(s"{pathPrefix}/userStringIntMap")
+      .saveAsObjectFile(s"${pathPrefix}/userStringIntMap")
     sc.parallelize(Seq(itemStringIntMap))
-      .saveAsObjectFile(s"{pathPrefix}/itemStringIntMap")
+      .saveAsObjectFile(s"${pathPrefix}/itemStringIntMap")
     true
   }
 
@@ -54,20 +54,19 @@ object ALSModel
   def apply(id: String, params: ALSAlgorithmParams,
     sc: Option[SparkContext]) = {
 
-    val pathPrefix = s"{modelPath()}/{id}"
+    val pathPrefix = s"${modelPath()}/${id}"
 
     new ALSModel(
-      rank = sc.get.objectFile[Int](s"{pathPrefix}/rank").first,
-      userFeatures = sc.get.objectFile(s"pathPrefix}/userFeatures"),
-      productFeatures = sc.get.objectFile(s"{pathPrefix}/productFeatures"),
+      rank = sc.get.objectFile[Int](s"${pathPrefix}/rank").first,
+      userFeatures = sc.get.objectFile(s"${pathPrefix}/userFeatures"),
+      productFeatures = sc.get.objectFile(s"${pathPrefix}/productFeatures"),
       userStringIntMap = sc.get
-        .objectFile[BiMap[String, Int]](s"{pathPrefix}/userStringIntMap").first,
+        .objectFile[BiMap[String, Int]](s"${pathPrefix}/userStringIntMap").first,
       itemStringIntMap = sc.get
-        .objectFile[BiMap[String, Int]](s"{pathPrefix}/itemStringIntMap").first)
+        .objectFile[BiMap[String, Int]](s"${pathPrefix}/itemStringIntMap").first)
   }
 
   def modelPath(): String = {
-    val PIO_HOME = sys.env("PIO_HOME")
-    return PIO_HOME + "/engine/recommender-incubating/model"
+    return "/root/engines/recommender-incubating/model"
   }
 }
