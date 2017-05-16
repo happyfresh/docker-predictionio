@@ -28,6 +28,6 @@ RUN mkdir -p ${PIO_HOME}/vendors \
 
 COPY conf/pio-env.sh ${PIO_HOME}/conf/pio-env.sh
 
-EXPOSE 4040 7070 7071 8000 9000
+EXPOSE 4040 6066 7070 7071 7077 8000 9000
 
 CMD ["/bin/bash"]
