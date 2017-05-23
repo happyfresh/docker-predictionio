@@ -3,13 +3,11 @@
 function copyArtifact() {
     echo "Getting build result from Github..."
 
-    PIO_ENVIRONMENT=master
-
     TEMP_DIR=/tmp/recommender
     mkdir -p $TEMP_DIR
     cd $TEMP_DIR
 
-    curl https://github.com/kahirul/PIO-Model/archive/${PIO_ENVIRONMENT}.zip
+    curl -LO https://github.com/kahirul/PIO-Model/archive/${PIO_ENVIRONMENT}.zip
     unzip ${PIO_ENVIRONMENT}.zip
     rm ${PIO_ENVIRONMENT}.zip
 
