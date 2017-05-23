@@ -62,9 +62,16 @@ function pushTrainedResult() {
     fi
 
     git rev-parse --verify $PIO_ENVIRONMENT
-    result=$?
-    if [ $result -ne 0 ]; then
-        git checkout -b $PIO_ENVIRONMENT
+    localBranch=$?
+    git rev-parse --verify origin/$PIO_ENVIRONMENT
+    remoteBranch=$?
+
+    if [ $localBranch -ne 0 ]; then
+        if [ $remoteBranch -ne 0 ];  then
+            git checkout -b $PIO_ENVIRONMENT
+        else
+            git checkout --track origin/$PIO_ENVIRONMENT
+        fi
     else
         git checkout $PIO_ENVIRONMENT
     fi
